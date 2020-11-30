@@ -11,6 +11,40 @@ int main() {
 
     std::vector <List> main;
 
+    int choice;
+    do {
+        std::cout << "<******** MENU ********>" << std::endl;
+        std::cout << "0: Exit\n"
+                     "1: Create new list\n"
+                     "2: Edit list\n"
+                     "3: Delete list\n"
+                     "4: Show list\n"
+                     "<***********************>"
+
+                     "Choose action: " << std::endl;
+        choice = readInt();
+
+        switch (choice) {
+            case 0:
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            default:
+                std::cout << "Niepoprawny wybór" << std::endl;
+        }
+
+    } while (choice);
+
     List List1 = List("Zakupy");
     addProduct(List1);
     addProduct(List1);
