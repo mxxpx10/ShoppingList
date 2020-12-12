@@ -19,9 +19,10 @@ public:
     List(const List & model);
     ~List();
     void putItem(Product);
-    int getCounter() {return counter;};
+    int getCounter() const {return counter;};
+    std::string getName () const {return listName;};
     void showList() const;
-    void deleteItem(int index);
+    void deleteItem();
     List & operator=(const List & model);
 
 };
