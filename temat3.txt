@@ -1,0 +1,15 @@
+W skład programu wchodzą następujące klasy: List, Product (klasa abstrakcyjna) oraz jej klasy pochodne:
+SoldByKilograms, SoldByLiters oraz SoldByPiece.
+Wektor "main" przechowuje obiekty klasy List. Tworząc obiekt tej klasy, użytkownik podaje jej nazwę.
+Klasa List przechowuje wskaźniki na obiekty klasy Product w wektorze "products".
+Użytkownik ma możliwość dodawania tych obiektów na koniec listy oraz usuwania wybranego elementu.
+Przy dodawaniu proszony jest o podanie nazwy produktu, jego kategorii (na tej podstawie tworzony jest obiekt
+odpowiedniej klasy) oraz ilości.
+Listy można wyświetlać oraz usuwać.
+Kolejną opcją jest duplikowanie danej listy.
+Dostępne są dwa warianty:
+1.Duplicate list -> Copy list from scratch - demonstracja działania konstruktora kopiującego
+2.Duplicate list -> Overwrite existing list - demonstracja działania operatora przypisania
+Program umożliwia również przenoszenie produktów pomiędzy listami.
+Możliwe jest również scalanie dwóch wybranych list pod warunkiem, że suma produktów z tych list (identyczne produkty są
+liczone jako jeden) jest nie większa niż 10.

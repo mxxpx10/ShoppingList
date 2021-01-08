@@ -8,14 +8,23 @@
 #include <string>
 
 class Product {
+protected:
     std::string itemName;
-    int amount;
-
+    std::string unit;
+    float amount;
 public:
-    Product(const std::string & name = "", int amount = 0);
+    Product(const std::string & name = "", const std::string & unit = "", float amount = 0);
     Product(Product & product);
-    void print() const;
+    virtual void print() const = 0;
+    virtual void ask() = 0;
+    void setAmount(float value);
+    virtual Product* createCopy() = 0;
+    int operator== (Product & pr1);
+    void operator+=(Product & pr);
 
 };
+
+
+
 
 #endif //SHOPPINGLIST_PRODUCT_H

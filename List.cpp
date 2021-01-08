@@ -4,14 +4,15 @@
 #include <iostream>
 #include "List.h"
 
-List::List(const std::string &name, int counter) : listName(name), counter(counter){
+List::List(const std::string & name, int counter) : listName(name), counter(counter){
     products.assign(PRODUCT_COUNT, nullptr);
 }
 
-List::List(const List &model) : List(model.listName, model.counter) {
+List::List(const List & model) : List(model.listName, model.counter) {
     for(int i = 0; i < PRODUCT_COUNT; ++i) {
         if(!model.products[i]) break;
-        products[i] = new Product(*(model.products[i]));
+        Product* wsk = model.products[i];
+        products[i] = wsk->createCopy();
     }
 }
 
@@ -21,8 +22,8 @@ List::~List() {
         products[i] = nullptr;
     }
 }
-void List::putItem(Product product) {
-    products[counter] = new Product(product);
+void List::putItem(Product *product) {
+    products[counter] = product ->createCopy();
     counter++;
 }
 
@@ -41,11 +42,23 @@ void List::showList() const {
     }
 }
 
-void List::deleteItem() {
+
+void List::deleteItem(int choice) {
+    if(!counter) {
+        std::cout <<"List is empty" << std::endl;
+        return;
+    }
+    auto it = products.begin();
+    for(int i = 0; i <= choice; ++i, ++it) {
+       if(i == choice) {
+            delete products[choice];
+            products.erase(it);
+            products.push_back(nullptr);
+        }
+    }
     counter--;
-    delete products[counter];
-    products[counter] = nullptr;
 }
+
 
 List &List::operator=(const List & model) {
     if(&model == this) return *this;
@@ -54,7 +67,7 @@ List &List::operator=(const List & model) {
         if (products[i] == nullptr && model.products[i] == nullptr) break;
         delete products[i];
         if (model.products[i])
-            products[i] = new Product(*(model.products[i]));
+            products[i] = model.products[i]->createCopy();
         else
             products[i] = nullptr;
     }
@@ -62,5 +75,16 @@ List &List::operator=(const List & model) {
     counter = model.counter;
     return *this;
 }
+
+Product *List::take(int index) {
+    Product *product =  products[index]->createCopy();
+    (*this).deleteItem(index);
+    return product;
+}
+
+
+
+
+
 
 
